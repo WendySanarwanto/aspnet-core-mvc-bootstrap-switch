@@ -15,4 +15,6 @@ $(document).ready(() => {
             $("#detail-form").hide();
         }
     });
+
+    $("#occupation-input").select2();
 });
