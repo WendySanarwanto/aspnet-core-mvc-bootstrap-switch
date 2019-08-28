@@ -13,19 +13,19 @@ namespace aspnet_core_mvc_bootstrap_switch.Repositories
                 new OccupationGroup {
                     Name = "IT/Software Development",
                     Occupations = new Occupation[] {
-                        new Occupation{ Code = "SE", Name = "Software Engineer" },
-                        new Occupation{ Code = "DE", Name = "Devops Engineer" },
-                        new Occupation{ Code = "NSE", Name = "Network Security Engineer" },
-                        new Occupation{ Code = "TE", Name = "Test Engineer" }
+                        new Occupation{ Id = "SE", Text = "Software Engineer" },
+                        new Occupation{ Id = "DE", Text = "Devops Engineer" },
+                        new Occupation{ Id = "NSE", Text = "Network Security Engineer" },
+                        new Occupation{ Id = "TE", Text = "Test Engineer" }
                     }
                 },
                 new OccupationGroup {
                     Name = "Healthcare/Medical",
                     Occupations = new Occupation[] {
-                        new Occupation{ Code = "MD", Name = "Doctor of Medicine" },
-                        new Occupation{ Code = "GS", Name = "General Surgery" },
-                        new Occupation{ Code = "NS", Name = "Neurosurgey" },
-                        new Occupation{ Code = "CS", Name = "Cardiothoracic Surgery" }
+                        new Occupation{ Id = "MD", Text = "Doctor of Medicine" },
+                        new Occupation{ Id = "GS", Text = "General Surgery" },
+                        new Occupation{ Id = "NS", Text = "Neurosurgey" },
+                        new Occupation{ Id = "CS", Text = "Cardiothoracic Surgery" }
                     }
                 }
             };

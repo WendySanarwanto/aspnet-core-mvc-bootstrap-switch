@@ -19,6 +19,22 @@ $(document).ready(() => {
     $("#occupation-input").select2();
 });
 
+ko.bindingHandlers.select2 = {
+    init: (element, valueAccessor, allBindings, viewModel, bindingContext) => {
+        var options = ko.unwrap(valueAccessor());
+        // ko.unwrap(allBindings.get('selectedOptions'));
+        console.log(`[debug] initialising select2. options arg: \n`, options);
+        $(element).select2(options);
+        console.log(`[debug] Select2 is initialised.`);
+    },
+    update: (element, valueAccessor, allBindings, viewModel, bindingContext) => {
+        var options = ko.unwrap(valueAccessor());
+        console.log(`[debug] select2 is updating.`);
+        $(element).select2(options);
+        console.log(`[debug] select2 is updated.`);
+    }
+};
+
 class HomeViewModel {
     constructor(model){
         const self = this;

@@ -21,9 +21,11 @@
         <div class="form-group">
             <label for="occupation-input">Occupation</label>
             <select class="form-control" id="occupation-input"
-                data-bind="options: Occupations,
+                    data-bind="select2: { data: Occupations() }">
+                @*data-bind="options: Occupations,
                            optionsText: 'name',
-                           value: SelectedOccupation">
+                           value: SelectedOccupation">*@
+                
                 <!-- <optgroup data-bind="text: name"></optgroup> -->
                 <!-- <optgroup label="IT/Software Development">
                     <option value="SE">Software Engineer</option>
@@ -42,6 +44,7 @@
     </form>
 </section>
 @section scripts{
+<script src="~/lib/select2/4.0.0/select2.full.js"></script>
 <script type="text/javascript">
     var model = @Html.Raw(@Json.Serialize(@Model))
     console.log(`[debug] model=\n`, model);
