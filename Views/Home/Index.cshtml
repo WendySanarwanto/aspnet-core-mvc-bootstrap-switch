@@ -1,4 +1,5 @@
-﻿@{
+﻿@model aspnet_core_mvc_bootstrap_switch.ViewModels.HomeViewModel
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -19,8 +20,12 @@
         </div>
         <div class="form-group">
             <label for="occupation-input">Occupation</label>
-            <select class="form-control" id="occupation-input">
-                <optgroup label="IT/Software Development">
+            <select class="form-control" id="occupation-input"
+                data-bind="options: Occupations,
+                           optionsText: 'name',
+                           value: SelectedOccupation">
+                <!-- <optgroup data-bind="text: name"></optgroup> -->
+                <!-- <optgroup label="IT/Software Development">
                     <option value="SE">Software Engineer</option>
                     <option value="DE">Devops Engineer</option>
                     <option value="NSE">Network Security Engineer</option>
@@ -31,8 +36,16 @@
                     <option value="GS">General Surgery</option>
                     <option value="NS">Neurosurgey</option>
                     <option value="CS">Cardiothoracic Surgery</option>
-                </optgroup>
+                </optgroup> -->
             </select>
         </div>
     </form>
 </section>
+@section scripts{
+<script type="text/javascript">
+    var model = @Html.Raw(@Json.Serialize(@Model))
+    console.log(`[debug] model=\n`, model);
+    var homeViewModel = new HomeViewModel(model);
+    ko.applyBindings(homeViewModel);
+</script>
+}

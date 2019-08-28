@@ -18,3 +18,17 @@ $(document).ready(() => {
 
     $("#occupation-input").select2();
 });
+
+class HomeViewModel {
+    constructor(model){
+        const self = this;
+        let occupations = [];
+        for(const occGroup of model.occupationGroups){
+            occupations = [...occupations, ...(occGroup.occupations)]
+        }
+        self.Occupations = ko.observableArray(occupations);
+        console.log(`self.Occupations: \n`, self.Occupations());
+        // self.OccupationGroups = ko.mapping.fromJS(model.occupationGroups);
+        self.SelectedOccupation = ko.observable('');
+    }
+}
