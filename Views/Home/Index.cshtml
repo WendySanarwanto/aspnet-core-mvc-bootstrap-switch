@@ -2,7 +2,6 @@
 @{
     ViewData["Title"] = "Home Page";
 }
-
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
@@ -14,9 +13,10 @@
     </div>
     <hr/>
     <form id="detail-form">
-        <div class="form-group">
+        <div class="form-group" data-bind="validationOptions: { messageTemplate: 'errorTemplate' }">
             <label for="full-name-input">Fullname</label>
-            <input id="full-name-input" class="form-control" type="text" name="fullname">
+            <input id="full-name-input" class="form-control" type="text" name="fullname" 
+                    placeholder="e.g. John Smith" data-bind="value: Fullname, text: Fullname" />
         </div>
         <div class="form-group">
             <label for="occupation-input">Occupation</label>
@@ -24,8 +24,7 @@
                     data-bind="select2: { data: Occupations() }">
                 @*data-bind="options: Occupations,
                            optionsText: 'name',
-                           value: SelectedOccupation">*@
-                
+                           value: SelectedOccupation">*@                
                 <!-- <optgroup data-bind="text: name"></optgroup> -->
                 <!-- <optgroup label="IT/Software Development">
                     <option value="SE">Software Engineer</option>
@@ -41,14 +40,23 @@
                 </optgroup> -->
             </select>
         </div>
+        <div class="form-group">
+            <label for="dob-input">Date of birth</label>
+            <input class="form-control" type="date" id="dob-input" data-bind="value: DateOfBirth" />
+        </div>
+        <div class="form-group text-right">
+            <button type="button" class="btn btn-primary" data-bind="enable: isEnabled">Update</button>
+        </div>        
     </form>
 </section>
 @section scripts{
-<script src="~/lib/select2/4.0.0/select2.full.js"></script>
+<script id="errorTemplate" type="text/html">
+    <div class="alert alert-danger" style="margin-top: 0.1em;" data-bind="validationMessage: field"></div>
+</script>    
 <script type="text/javascript">
     var model = @Html.Raw(@Json.Serialize(@Model))
     console.log(`[debug] model=\n`, model);
     var homeViewModel = new HomeViewModel(model);
-    ko.applyBindings(homeViewModel);
+    ko.applyBindings(homeViewModel, document.body);
 </script>
 }

@@ -46,5 +46,23 @@ class HomeViewModel {
         console.log(`self.Occupations: \n`, self.Occupations());
         // self.OccupationGroups = ko.mapping.fromJS(model.occupationGroups);
         self.SelectedOccupation = ko.observable('');
+
+        self.Fullname = ko.observable('Laura Smith');
+        self.Fullname.extend({
+            required: {
+                message: "Fullname cannot be left as empty."
+            }
+        });
+
+        self.DateOfBirth = ko.observable(new Date());
+        self.errors = ko.validation.group(self);
+        self.isEnabled = ko.computed(() => {
+            return self.errors().length > 0 ? false : true;
+        });
+        // self.Fullname = ko.observable('John Smith');
+        // self.Fullname.subscribe(newVal => {
+        //     console.log(`[debug] fullname: ${newVal}`);
+        //     alert(newVal);
+        // });
     }
 }
